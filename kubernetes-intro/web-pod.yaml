@@ -1,4 +1,4 @@
-apiVersion: v1 # Версия API
+apiVersion:  apps/v1 # Версия API
 kind: Pod # Объект, который создаем
 metadata:
   name: nginx-web-otus # Название Pod
