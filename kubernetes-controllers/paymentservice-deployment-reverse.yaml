@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+  labels:
+    app: paymentservice
+    var: v0.0.1
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+       app: paymentservice
+       var: v0.0.1
+  template:
+    metadata:
+      labels:
+        app: paymentservice
+        var: v0.0.1
+    spec:
+      containers:
+      - name: server
+        image: andreyeus/otus-paymentservice:v0.0.1
+        ports:
+        - containerPort: 50051
+        env:
+        - name: PORT
+          value: "50051"
+        - name: DISABLE_PROFILER
+          value: "1"
